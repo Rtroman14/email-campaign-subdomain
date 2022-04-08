@@ -11,9 +11,9 @@ const _ = new HelperApi();
 
 const emailOutreach = require("./src/emailOutreach");
 
-exports.emailCampaignHlSubdomain = async (req, res) => {
+exports.emailCampaignSubdomain = async (req, res) => {
     try {
-        const campaigns = await Airtable.getCampaigns("Email - HL - subdomain");
+        const campaigns = await Airtable.getCampaigns("Email - HL subdomain");
         let accounts = _.accountsToRun(campaigns);
 
         const arrayEmailOutreach = accounts.map((account) => emailOutreach(account));
@@ -29,7 +29,7 @@ exports.emailCampaignHlSubdomain = async (req, res) => {
 
         res.status(200).send(results);
     } catch (error) {
-        console.log("EMAILCAMPAIGN ---", error);
+        console.log("emailCampaignSubdomain()", error);
         res.status(500).send(error);
     }
 };
