@@ -18,7 +18,7 @@ const emailOutreach = require("./src/emailOutreach");
 (async () => {
     try {
         const campaigns = await Airtable.getCampaigns("Email - HL subdomain");
-        let accounts = _.test(campaigns);
+        let accounts = _.campaignsToRun(campaigns);
 
         console.log(accounts);
     } catch (error) {

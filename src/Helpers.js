@@ -38,50 +38,50 @@ module.exports = class HelperApi {
         });
     }
 
-    campaignsToRun(campaigns) {
-        let emailCampaigns = [];
+    // campaignsToRun(campaigns) {
+    //     let emailCampaigns = [];
 
-        campaigns.forEach((campaign) => {
-            // check if client is in emailCampaigns
-            const isClientPresent = emailCampaigns.some(
-                (newCampaign) => newCampaign.Client === campaign.Client
-            );
+    //     campaigns.forEach((campaign) => {
+    //         // check if client is in emailCampaigns
+    //         const isClientPresent = emailCampaigns.some(
+    //             (newCampaign) => newCampaign.Client === campaign.Client
+    //         );
 
-            if ("Type" in campaign && campaign.Type === "Specific") {
-                return emailCampaigns.push(campaign);
-            }
+    //         if ("Type" in campaign && campaign.Type === "Specific") {
+    //             return emailCampaigns.push(campaign);
+    //         }
 
-            // check if multiple same clients exist in campaigns
-            const clientCampaigns = campaigns.filter((obj) => {
-                if (!("Type" in obj)) {
-                    return obj.Client === campaign.Client;
-                }
-            });
+    //         // check if multiple same clients exist in campaigns
+    //         const clientCampaigns = campaigns.filter((obj) => {
+    //             if (!("Type" in obj)) {
+    //                 return obj.Client === campaign.Client;
+    //             }
+    //         });
 
-            if (clientCampaigns.length > 1 && !isClientPresent) {
-                let clientAdded = false;
+    //         if (clientCampaigns.length > 1 && !isClientPresent) {
+    //             let clientAdded = false;
 
-                clientCampaigns.some((obj) => {
-                    if (!("Last Updated" in obj)) {
-                        clientAdded = true;
-                        return emailCampaigns.push(obj);
-                    }
-                });
+    //             clientCampaigns.some((obj) => {
+    //                 if (!("Last Updated" in obj)) {
+    //                     clientAdded = true;
+    //                     return emailCampaigns.push(obj);
+    //                 }
+    //             });
 
-                const [nextCampaign] = clientCampaigns.sort(
-                    (a, b) => new Date(a["Last Updated"]) - new Date(b["Last Updated"])
-                );
+    //             const [nextCampaign] = clientCampaigns.sort(
+    //                 (a, b) => new Date(a["Last Updated"]) - new Date(b["Last Updated"])
+    //             );
 
-                !clientAdded && emailCampaigns.push(nextCampaign);
-            }
+    //             !clientAdded && emailCampaigns.push(nextCampaign);
+    //         }
 
-            if (clientCampaigns.length === 1) {
-                emailCampaigns.push(campaign);
-            }
-        });
+    //         if (clientCampaigns.length === 1) {
+    //             emailCampaigns.push(campaign);
+    //         }
+    //     });
 
-        return emailCampaigns;
-    }
+    //     return emailCampaigns;
+    // }
 
     mapContact(contacts) {
         return contacts.map((contact) => {
@@ -166,7 +166,7 @@ module.exports = class HelperApi {
         return isToday;
     }
 
-    test(campaigns) {
+    campaignsToRun(campaigns) {
         let activeCampaigns = this.activeCampaigns(campaigns);
 
         let allAccounts = activeCampaigns.map((account) => account.Account);

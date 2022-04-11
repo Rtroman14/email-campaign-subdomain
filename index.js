@@ -14,7 +14,7 @@ const emailOutreach = require("./src/emailOutreach");
 exports.emailCampaignSubdomain = async (req, res) => {
     try {
         const campaigns = await Airtable.getCampaigns("Email - HL subdomain");
-        let accounts = _.accountsToRun(campaigns);
+        let accounts = _.campaignsToRun(campaigns);
 
         const arrayEmailOutreach = accounts.map((account) => emailOutreach(account));
 
