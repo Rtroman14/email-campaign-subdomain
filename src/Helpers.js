@@ -193,6 +193,6 @@ module.exports = class HelperApi {
             }
         }
 
-        console.log(campaignsByAccount);
+        return campaignsByAccount;
     }
 };
