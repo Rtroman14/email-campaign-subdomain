@@ -83,7 +83,7 @@ module.exports = class AirtableApi {
 
             const res = await base("Prospects")
                 .select({
-                    maxRecords: 25,
+                    maxRecords: 5,
                     view,
                 })
                 .firstPage();
